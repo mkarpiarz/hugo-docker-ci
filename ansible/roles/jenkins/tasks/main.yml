@@ -22,3 +22,9 @@
     name: jenkins
     state: started
   tags: jenkins
+
+- name: Install git
+  apt:
+    name: git
+    state: present
+  tags: git
