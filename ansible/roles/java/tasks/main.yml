@@ -1,0 +1,30 @@
+---
+- name: Ensure the webupd8 launchpad apt repository key is present
+  apt_key:
+    id: '0xC2518248EEA14886'
+    keyserver: keyserver.ubuntu.com
+    state: present
+  tag: java
+
+- name: Add Oracle Java Repository
+  apt_repository:
+    repo: 'ppa:webupd8team/java'
+  tag: java
+
+- name: Accept Java 8 License
+  debconf:
+    name: 'oracle-java8-installer'
+    question: 'shared/accepted-oracle-license-v1-1'
+    value: 'true'
+    vtype: 'select'
+  tag: java
+
+- name: Install Oracle Java 8
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - oracle-java8-installer
+    - ca-certificates
+    - oracle-java8-set-default
+  tag: java

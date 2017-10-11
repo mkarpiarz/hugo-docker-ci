@@ -6,4 +6,5 @@
   become_method: sudo
   roles:
     - common
+    - java
     - jenkins
