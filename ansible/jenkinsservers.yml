@@ -1,0 +1,8 @@
+---
+- hosts: jenkins
+  gather_facts: false
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  roles:
+    - common
