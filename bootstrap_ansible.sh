@@ -24,3 +24,7 @@ ANSIBLE_HOME=/home/ansible
 cat ./keys/ansible_user_key.pub > ${ANSIBLE_HOME}/.ssh/authorized_keys
 chown -R ansible:bots ${ANSIBLE_HOME}/.ssh/
 chmod 700 ${ANSIBLE_HOME}/.ssh
+
+# Make sure the ansible group is allowed to SSH
+[[ -z $(grep "^AllowGroups.*bots" /etc/ssh/sshd_config) ]] && echo "AllowGroups bots" >> /etc/ssh/sshd_config
+sshd -t && service ssh restart
