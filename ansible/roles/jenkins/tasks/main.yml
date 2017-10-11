@@ -28,3 +28,12 @@
     name: git
     state: present
   tags: git
+
+- name: Assign Jenkins to groups
+  user:
+    name: jenkins
+    groups:
+      - jenkins
+      - docker
+      - sudo
+  tags: jenkins
