@@ -6,3 +6,7 @@
 - name: Ensure NTP is enabled and running
   service: name=ntp state=started enabled=yes
   tags: ntp
+
+- name: Install vim
+  apt: name=vim state=installed
+  tags: vim
