@@ -1,0 +1,27 @@
+---
+- name: Install git
+  apt:
+    name: git
+    state: present
+  tags: git
+
+- name: Create user git
+  user:
+    name: git
+    groups:
+      - git
+      - bots
+    shell: /bin/bash
+    home: /home/git
+    state: present
+  tags: git
+
+- name: Set authorized key for the git user
+  authorized_key:
+    user: git
+    state: present
+    exclusive: True
+    key: '{{ item }}'
+  with_file:
+    - public_keys/git_key_for_jenkins.pub
+  tags: git

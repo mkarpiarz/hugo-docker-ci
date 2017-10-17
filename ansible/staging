@@ -1,5 +1,9 @@
 [jenkins]
 jenkins
 
+[gitserver]
+git
+
 [staging:children]
 jenkins
+gitserver

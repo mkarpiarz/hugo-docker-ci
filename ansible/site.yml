@@ -1,2 +1,3 @@
 ---
 - import_playbook: jenkinsservers.yml
+- import_playbook: gitservers.yml
